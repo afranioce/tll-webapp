@@ -1,0 +1,10 @@
+<mat-card>
+  <mat-card-title>Lista de funcionarios</mat-card-title>
+  <mat-card-content>
+    <td-data-table [data]="basicData" [columns]="configWidthColumns">
+    </td-data-table>
+  </mat-card-content>
+</mat-card>
+<a mat-fab matTooltip="New User" matTooltipPosition="before" color="accent" class="mat-fab-position-bottom-right z-3" routerLink="novo">
+	<mat-icon>add</mat-icon>
+</a>
