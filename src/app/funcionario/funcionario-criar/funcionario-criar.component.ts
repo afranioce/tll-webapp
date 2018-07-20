@@ -44,11 +44,11 @@ export class FuncionarioCriarComponent implements OnInit {
       return;
     }
 
-    const funcionario = this.getQuestionFromFormValue(this.funcionarioForm.value);
+    const funcionario = this.FromForm2Entity(this.funcionarioForm.value);
     this.funcionarioService.save(funcionario);
   }
 
-  getQuestionFromFormValue(formValue: any): Funcionario {
+  FromForm2Entity(formValue: any): Funcionario {
     const funcionario = new Funcionario();
     funcionario.nome = formValue.nome;
     funcionario.departamento = formValue.departamento;
