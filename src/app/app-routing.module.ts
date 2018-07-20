@@ -6,9 +6,9 @@ import { MovimentacaoComponent } from './movimentacao/movimentacao.component';
 
 const routes: Routes = [
   {
-    path: 'departamentoes',
+    path: 'departamentos',
     component: DepartamentoComponent,
-    data: { title: 'Departamentoes' }
+    data: { title: 'Departamentos' }
   },
   {
     path: 'funcionarios',

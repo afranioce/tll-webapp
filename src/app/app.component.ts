@@ -25,8 +25,8 @@ export class AppComponent {
     },
     {
       icone: 'library_books',
-      rota: 'departamentoes',
-      titulo: 'Departamentoes',
+      rota: 'departamentos',
+      titulo: 'Departamentos',
     }
   ];
 }
