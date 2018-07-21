@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Funcionario } from '../../core/models/funcionario.model';
 import { FuncionarioService } from '../../core/service/funcionario.service';
 import { Departamento } from '../../core/models/departamento.model';
+import { DepartamentoService } from '../../core/service/departamento.service';
 
 @Component({
   selector: 'app-funcionario-editar',
@@ -18,7 +19,9 @@ export class FuncionarioEditarComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private funcionarioService: FuncionarioService,
-    private route: ActivatedRoute
+    private departamentoService: DepartamentoService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.criarFormulario();
   }
@@ -32,16 +35,7 @@ export class FuncionarioEditarComponent implements OnInit {
       departamento: this.funcionario.departamento.id
     });
 
-    this.departamentos = [
-      {
-        id: 1,
-        nome: 'Departamento 1'
-      },
-      {
-        id: 2,
-        nome: 'Departamento 2'
-      }
-    ];
+    this.departamentos = await this.departamentoService.fetch();
   }
 
   criarFormulario() {
@@ -57,12 +51,17 @@ export class FuncionarioEditarComponent implements OnInit {
     }
 
     const funcionario = this.fromForm2Entity(this.funcionarioForm.value);
-    this.funcionarioService.update(funcionario.id, funcionario);
+    this.funcionarioService.update(this.funcionario.id, funcionario).then(() => {
+      this.router.navigate(['funcionarios']);
+    }).catch(() => {
+      alert('Ocorreu um erro ao tentar salvar');
+    });
   }
 
   fromForm2Entity(formValue: any): Funcionario {
-    this.funcionario.nome = formValue.nome;
-    this.funcionario.departamento = formValue.departamento;
-    return this.funcionario;
+    const funcionario = new Funcionario();
+    funcionario.nome = formValue.nome;
+    funcionario.departamento = formValue.departamento;
+    return funcionario;
   }
 }

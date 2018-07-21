@@ -3,6 +3,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Funcionario } from '../../core/models/funcionario.model';
 import { FuncionarioService } from '../../core/service/funcionario.service';
 import { Departamento } from '../../core/models/departamento.model';
+import { DepartamentoService } from '../../core/service/departamento.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-funcionario-criar',
@@ -14,22 +16,18 @@ export class FuncionarioCriarComponent implements OnInit {
   funcionario: Funcionario;
   departamentos: Departamento[];
 
-  constructor(private fb: FormBuilder, private funcionarioService: FuncionarioService) {
+  constructor(
+    private fb: FormBuilder,
+    private funcionarioService: FuncionarioService,
+    private departamentoService: DepartamentoService,
+    private router: Router
+  ) {
     const funcionario = new Funcionario();
     this.criarFormulario(funcionario);
   }
 
-  ngOnInit() {
-    this.departamentos = [
-      {
-        id: 1,
-        nome: 'Departamento 1'
-      },
-      {
-        id: 2,
-        nome: 'Departamento 2'
-      }
-    ];
+  async ngOnInit() {
+    this.departamentos = await this.departamentoService.fetch();
   }
 
   criarFormulario(funcionario: Funcionario) {
@@ -44,11 +42,16 @@ export class FuncionarioCriarComponent implements OnInit {
       return;
     }
 
-    const funcionario = this.FromForm2Entity(this.funcionarioForm.value);
-    this.funcionarioService.save(funcionario);
+    const funcionario = this.fromForm2Entity(this.funcionarioForm.value);
+
+    this.funcionarioService.save(funcionario).then(() => {
+      this.router.navigate(['funcionarios']);
+    }).catch(() => {
+      alert('Ocorreu um erro ao tentar salvar');
+    });
   }
 
-  FromForm2Entity(formValue: any): Funcionario {
+  fromForm2Entity(formValue: any): Funcionario {
     const funcionario = new Funcionario();
     funcionario.nome = formValue.nome;
     funcionario.departamento = formValue.departamento;

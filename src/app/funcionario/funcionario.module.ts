@@ -18,6 +18,7 @@ import {
   MatButtonModule
 } from '@angular/material';
 import { FuncionarioService } from '../core/service/funcionario.service';
+import { DepartamentoService } from '../core/service/departamento.service';
 
 @NgModule({
   imports: [
@@ -43,7 +44,9 @@ import { FuncionarioService } from '../core/service/funcionario.service';
     FuncionarioEditarComponent,
     FuncionarioDetalheComponent
   ],
-  exports: [],
-  providers: [FuncionarioService]
+  providers: [
+    FuncionarioService,
+    DepartamentoService
+  ]
 })
 export class FuncionarioModule { }

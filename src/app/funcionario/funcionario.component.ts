@@ -11,15 +11,20 @@ import { Funcionario } from '../core/models/funcionario.model';
 export class FuncionarioComponent implements OnInit {
   configWidthColumns: ITdDataTableColumn[] = [
     { name: 'id', label: 'N.', width: 80 },
-    { name: 'nome', label: 'Nome', width: 150 }
+    { name: 'nome', label: 'Nome' }
   ];
 
-  basicData: Funcionario[];
+  funcionarios: Funcionario[];
 
   constructor(private funcionarioService: FuncionarioService) { }
 
   async ngOnInit() {
-    this.basicData = await this.funcionarioService.fetch();
+    this.funcionarios = await this.funcionarioService.fetch();
   }
 
+  async excluir(funcionario: Funcionario) {
+    if (await this.funcionarioService.delete(funcionario.id)) {
+      this.funcionarios = await this.funcionarioService.fetch();
+    }
+  }
 }
