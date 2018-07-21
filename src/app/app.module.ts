@@ -8,7 +8,7 @@ import { CovalentHttpModule } from '@covalent/http';
 import { CovalentHighlightModule } from '@covalent/highlight';
 import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
 
-import { MatButtonModule, MatListModule, MatIconModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatListModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatCardModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,21 +17,30 @@ import { AppComponent } from './app.component';
 import { FuncionarioModule } from './funcionario/funcionario.module';
 import { MovimentacaoModule } from './movimentacao/movimentacao.module';
 import { DepartamentoModule } from './departamento/departamento.module';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './core/auth/auth.service';
+import { AuthGuard } from './core/auth/auth.guard';
+import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     // angular modules
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     // material modules
     MatButtonModule,
     MatListModule,
     MatIconModule,
     MatToolbarModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatCardModule,
     // covalent modules
     CovalentLayoutModule,
     CovalentStepsModule,
@@ -43,7 +52,7 @@ import { DepartamentoModule } from './departamento/departamento.module';
     DepartamentoModule,
     MovimentacaoModule,
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
