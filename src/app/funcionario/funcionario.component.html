@@ -1,7 +1,7 @@
 <mat-card>
-  <mat-card-title>Lista de funcionarios</mat-card-title>
+  <mat-card-title>Lista de funcionários</mat-card-title>
   <mat-card-content>
-    <table td-data-table #dataTable>
+    <table td-data-table>
       <thead>
         <tr td-data-table-column-row>
           <th td-data-table-column *ngFor="let column of configWidthColumns" [numeric]="column.numeric">
@@ -18,8 +18,8 @@
           </td>
           <td td-data-table-cell>{{funcionario.departamento.nome}}</td>
           <td td-data-table-cell>
-            <a [routerLink]="[funcionario.id, 'editar']">Editar</a>
-            <button mat-button (click)="excluir(funcionario)">Excluir</button>
+            <a mat-button [routerLink]="[funcionario.id, 'editar']">Editar</a>
+            <button mat-button (click)="excluir(funcionario)"><mat-icon>delete_forever</mat-icon>Excluir</button>
           </td>
         </tr>
       </tbody>

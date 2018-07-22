@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { AuthService } from './core/auth/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  titulo = 'GF Teste';
+export class AppComponent implements OnInit {
+  isLoggedIn$: Observable<boolean>;
+  titulo = 'Controle de movimentação';
   rotas: Object[] = [
     {
       icone: 'home',
@@ -14,19 +17,29 @@ export class AppComponent {
       titulo: 'Home',
     },
     {
-      icone: 'color_lens',
+      icone: 'shopping_cart',
       rota: 'movimentacoes',
       titulo: 'Movimentações',
     },
     {
-      icone: 'view_quilt',
+      icone: 'assignment_ind',
       rota: 'funcionarios',
       titulo: 'Funcionários',
     },
     {
-      icone: 'library_books',
+      icone: 'work',
       rota: 'departamentos',
       titulo: 'Departamentos',
     }
   ];
+
+  constructor(private authService: AuthService) { }
+
+  ngOnInit() {
+    this.isLoggedIn$ = this.authService.isLoggedIn;
+  }
+
+  onLogout() {
+    this.authService.logout();
+  }
 }

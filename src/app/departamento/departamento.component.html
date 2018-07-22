@@ -18,8 +18,8 @@
             {{column.format ? column.format(departamento[column.name]) : departamento[column.name]}}
           </td>
           <td td-data-table-cell>
-            <a [routerLink]="[departamento.id, 'editar']">Editar</a>
-            <button mat-button (click)="excluir(departamento)">Excluir</button>
+            <a mat-button [routerLink]="[departamento.id, 'editar']">Editar</a>
+            <button mat-button (click)="excluir(departamento)"><mat-icon>delete_forever</mat-icon>Excluir</button>
           </td>
         </tr>
       </tbody>
