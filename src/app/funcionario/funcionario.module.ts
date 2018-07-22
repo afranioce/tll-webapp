@@ -15,7 +15,8 @@ import {
   MatInputModule,
   MatFormFieldModule,
   MatOptionModule,
-  MatButtonModule
+  MatButtonModule,
+  MatTooltipModule
 } from '@angular/material';
 import { FuncionarioService } from '../core/service/funcionario.service';
 import { DepartamentoService } from '../core/service/departamento.service';
@@ -35,6 +36,7 @@ import { DepartamentoService } from '../core/service/departamento.service';
     MatInputModule,
     MatSelectModule,
     MatOptionModule,
+    MatTooltipModule,
 
     FuncionarioRoutingModule
   ],
