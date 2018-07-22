@@ -1,0 +1,31 @@
+<mat-card flex-gt-sm>
+  <mat-card-title>Cadastrar funcionário</mat-card-title>
+  <mat-card-content>
+    <div class="example-container">
+      <form [formGroup]="movimentacaoForm" (ngSubmit)="enviar()" class="example-container">
+        <mat-form-field class="example-full-width">
+          <input type="number" matInput placeholder="Valor" formControlName="valor">
+          <mat-error>
+            <span *ngIf="!movimentacaoForm.get('valor').valid && movimentacaoForm.get('valor').touched">Informe o valor!</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Funcionario" formControlName="funcionario">
+            <mat-option *ngFor="let funcionario of funcionarios" [value]="funcionario.id">
+              {{funcionario.nome}}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <span *ngIf="!movimentacaoForm.get('funcionario').valid && movimentacaoForm.get('funcionario').touched">Selecione um funcionario!</span>
+          </mat-error>
+        </mat-form-field>
+
+        <span>
+          <button mat-raised-button type="submit" color="accent" [disabled]="movimentacaoForm.invalid">Salvar</button>
+        </span>
+      </form>
+    </div>
+
+  </mat-card-content>
+</mat-card>

@@ -58,16 +58,16 @@ export class CrudService<T> {
             .catch(this.handleError);
     }
 
-    private getUrl() {
+    protected getUrl() {
         return this.rootUrl + this.path;
     }
 
-    private extractData(res: Response) {
+    protected extractData(res: Response) {
         const body = res.json();
         return body || {};
     }
 
-    private handleError(error: Response | any) {
+    protected handleError(error: Response | any) {
         // In a real world app, we might use a remote logging infrastructure
         let errMsg: string;
         if (error instanceof Response) {

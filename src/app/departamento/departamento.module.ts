@@ -15,7 +15,8 @@ import {
   MatInputModule,
   MatFormFieldModule,
   MatOptionModule,
-  MatButtonModule
+  MatButtonModule,
+  MatTooltipModule
 } from '@angular/material';
 import { DepartamentoService } from '../core/service/departamento.service';
 @NgModule({
@@ -33,6 +34,7 @@ import { DepartamentoService } from '../core/service/departamento.service';
     MatInputModule,
     MatSelectModule,
     MatOptionModule,
+    MatTooltipModule,
 
     DepartamentoRoutingModule
   ],

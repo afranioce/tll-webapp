@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-title>Lista de departamentos</mat-card-title>
   <mat-card-content>
-    <table td-data-table>
+    <table td-data-table #dataTable>
       <thead>
         <tr td-data-table-column-row>
           <th td-data-table-column *ngFor="let column of configWidthColumns" [numeric]="column.numeric">
@@ -24,7 +24,6 @@
         </tr>
       </tbody>
     </table>
-
   </mat-card-content>
 </mat-card>
 <a mat-fab matTooltip="Novo departamento" matTooltipPosition="before" color="accent" class="mat-fab-position-bottom-right z-3"
