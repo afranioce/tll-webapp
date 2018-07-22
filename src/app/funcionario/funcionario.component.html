@@ -18,7 +18,7 @@
           </td>
           <td td-data-table-cell>{{funcionario.departamento.nome}}</td>
           <td td-data-table-cell>
-            <a [routerLink]="[funcionario.id, 'editar']">Editar</a>
+            <a mat-button [routerLink]="[funcionario.id, 'editar']">Editar</a>
             <button mat-button (click)="excluir(funcionario)"><mat-icon>delete_forever</mat-icon>Excluir</button>
           </td>
         </tr>

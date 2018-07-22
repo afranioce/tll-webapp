@@ -30,8 +30,8 @@
           </td>
           <td td-data-table-cell>{{movimentacao.funcionario.nome}}</td>
           <td td-data-table-cell>
-            <a [routerLink]="[movimentacao.id, 'editar']">Editar</a>
-            <button mat-button (click)="excluir(movimentacao)">Excluir</button>
+            <a mat-button [routerLink]="[movimentacao.id, 'editar']">Editar</a>
+            <button mat-button (click)="excluir(movimentacao)"><mat-icon>delete_forever</mat-icon>Excluir</button>
           </td>
         </tr>
       </tbody>

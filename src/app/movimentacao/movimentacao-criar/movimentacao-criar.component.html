@@ -4,6 +4,7 @@
     <div class="example-container">
       <form [formGroup]="movimentacaoForm" (ngSubmit)="enviar()" class="example-container">
         <mat-form-field class="example-full-width">
+          <mat-icon matPrefix>attach_money</mat-icon>
           <input type="number" matInput placeholder="Valor" formControlName="valor">
           <mat-error>
             <span *ngIf="!movimentacaoForm.get('valor').valid && movimentacaoForm.get('valor').touched">Informe o valor!</span>
