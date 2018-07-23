@@ -1,0 +1,22 @@
+<div class="signin-content">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <p>Entre com o seu login para continuar</p>
+        <mat-form-field class="full-width-input">
+          <input matInput placeholder="Usuário" formControlName="username" required>
+          <mat-error>
+            <span *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">Informe o nome de usuário!</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input matInput type="password" placeholder="Senha" formControlName="password" required>
+          <mat-error>
+            <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">Informe sua senha!</span>
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="loginForm.invalid">Entrar</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,45 @@
+<mat-card>
+  <mat-card-title>Lista de movimentações</mat-card-title>
+  <mat-card-content>
+    <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
+      <mat-form-field>
+        <mat-select placeholder="Filtrar por funcionário" (change)="filtrarPorFuncionario($event)">
+          <mat-option>Todos</mat-option>
+          <mat-option *ngFor="let funcionario of funcionarios" [value]="funcionario.id">
+            {{funcionario.nome}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+
+    <table td-data-table #dataTable>
+      <thead>
+        <tr td-data-table-column-row>
+          <th td-data-table-column *ngFor="let column of configWidthColumns" [numeric]="column.numeric">
+            {{column.label}}
+          </th>
+          <th td-data-table-column>Funcionário</th>
+          <th td-data-table-column>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr td-data-table-row *ngFor="let movimentacao of movimentacoes">
+          <td td-data-table-cell *ngFor="let column of configWidthColumns" [numeric]="column.numeric">
+            {{column.format ? column.format(movimentacao[column.name]) : movimentacao[column.name]}}
+          </td>
+          <td td-data-table-cell>{{movimentacao.funcionario.nome}}</td>
+          <td td-data-table-cell>
+            <a mat-button [routerLink]="[movimentacao.id, 'editar']">Editar</a>
+            <button mat-button (click)="excluir(movimentacao)"><mat-icon>delete_forever</mat-icon>Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </mat-card-content>
+</mat-card>
+<a mat-fab matTooltip="Nova movimentação" matTooltipPosition="before" color="accent" class="mat-fab-position-bottom-right z-3"
+  routerLink="novo">
+  <mat-icon>add</mat-icon>
+</a>

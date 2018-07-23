@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-title>Lista de funcionários</mat-card-title>
+  <mat-card-content>
+    <table td-data-table>
+      <thead>
+        <tr td-data-table-column-row>
+          <th td-data-table-column *ngFor="let column of configWidthColumns" [numeric]="column.numeric">
+            {{column.label}}
+          </th>
+          <th td-data-table-column>Departamento</th>
+          <th td-data-table-column>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr td-data-table-row *ngFor="let funcionario of funcionarios">
+          <td td-data-table-cell *ngFor="let column of configWidthColumns" [numeric]="column.numeric">
+            {{column.format ? column.format(funcionario[column.name]) : funcionario[column.name]}}
+          </td>
+          <td td-data-table-cell>{{funcionario.departamento.nome}}</td>
+          <td td-data-table-cell>
+            <a mat-button [routerLink]="[funcionario.id, 'editar']">Editar</a>
+            <button mat-button (click)="excluir(funcionario)"><mat-icon>delete_forever</mat-icon>Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </mat-card-content>
+</mat-card>
+<a mat-fab matTooltip="Novo funcionário" matTooltipPosition="before" color="accent" class="mat-fab-position-bottom-right z-3"
+  routerLink="novo">
+  <mat-icon>add</mat-icon>
+</a>

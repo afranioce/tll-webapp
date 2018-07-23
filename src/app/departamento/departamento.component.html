@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-title>Lista de departamentos</mat-card-title>
+  <mat-card-content>
+    <table td-data-table #dataTable>
+      <thead>
+        <tr td-data-table-column-row>
+          <th td-data-table-column *ngFor="let column of configWidthColumns" [numeric]="column.numeric">
+            {{column.label}}
+          </th>
+          <th td-data-table-column>
+            <span>Ações</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr td-data-table-row *ngFor="let departamento of departamentos">
+          <td td-data-table-cell *ngFor="let column of configWidthColumns" [numeric]="column.numeric">
+            {{column.format ? column.format(departamento[column.name]) : departamento[column.name]}}
+          </td>
+          <td td-data-table-cell>
+            <a mat-button [routerLink]="[departamento.id, 'editar']">Editar</a>
+            <button mat-button (click)="excluir(departamento)"><mat-icon>delete_forever</mat-icon>Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>
+<a mat-fab matTooltip="Novo departamento" matTooltipPosition="before" color="accent" class="mat-fab-position-bottom-right z-3"
+  routerLink="novo">
+  <mat-icon>add</mat-icon>
+</a>

@@ -1,0 +1,20 @@
+<mat-card flex-gt-sm>
+  <mat-card-title>Cadastrar departamento</mat-card-title>
+  <mat-card-content>
+    <div class="example-container">
+      <form [formGroup]="departamentoForm" (ngSubmit)="enviar()" class="example-container">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nome" formControlName="nome">
+          <mat-error>
+            <span *ngIf="!departamentoForm.get('nome').valid && departamentoForm.get('nome').touched">Informe o nome!</span>
+          </mat-error>
+        </mat-form-field>
+
+        <span>
+          <button mat-raised-button type="submit" color="accent" [disabled]="departamentoForm.invalid">Salvar</button>
+        </span>
+      </form>
+    </div>
+
+  </mat-card-content>
+</mat-card>

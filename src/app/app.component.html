@@ -1,0 +1,16 @@
+<td-layout-manage-list opened="true" mode="side">
+  <mat-toolbar td-sidenav-content>{{titulo}}</mat-toolbar>
+  <div td-sidenav-content>
+    <mat-nav-list>
+      <a *ngFor="let item of rotas" routerLink="{{item.rota}}" mat-list-item>
+        <mat-icon>{{item.icone}}</mat-icon>{{item.titulo}}
+      </a>
+      <a (click)="onLogout()" *ngIf="isLoggedIn$ | async" mat-list-item>
+        <mat-icon>exit_to_app</mat-icon>Sair
+      </a>
+    </mat-nav-list>
+  </div>
+  <mat-toolbar>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</td-layout-manage-list>
