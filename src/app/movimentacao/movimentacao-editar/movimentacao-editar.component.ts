@@ -32,7 +32,8 @@ export class MovimentacaoEditarComponent implements OnInit {
 
     this.movimentacaoForm.setValue({
       valor: this.movimentacao.valor,
-      funcionario: this.movimentacao.funcionario.id
+      funcionario: this.movimentacao.funcionario.id,
+      descricao: this.movimentacao.descricao
     });
 
     this.funcionarios = await this.funcionarioService.fetch();
@@ -41,7 +42,8 @@ export class MovimentacaoEditarComponent implements OnInit {
   criarFormulario() {
     this.movimentacaoForm = this.fb.group({
       nome: [this.movimentacao.valor, Validators.required],
-      funcionario: [this.movimentacao.funcionario.id, Validators.required]
+      funcionario: [this.movimentacao.funcionario.id, Validators.required],
+      descricao: [this.movimentacao.descricao]
     });
   }
 
@@ -62,6 +64,7 @@ export class MovimentacaoEditarComponent implements OnInit {
     const movimentacao = new Movimentacao();
     movimentacao.valor = formValue.valor;
     movimentacao.funcionario = formValue.funcionario;
+    movimentacao.descricao = formValue.descricao;
     return movimentacao;
   }
 }

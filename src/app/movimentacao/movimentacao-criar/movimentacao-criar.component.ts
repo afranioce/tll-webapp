@@ -33,7 +33,8 @@ export class MovimentacaoCriarComponent implements OnInit {
   criarFormulario(movimentacao: Movimentacao) {
     this.movimentacaoForm = this.fb.group({
       valor: [movimentacao.valor, Validators.required],
-      funcionario: [movimentacao.funcionario.id, Validators.required]
+      funcionario: [movimentacao.funcionario.id, Validators.required],
+      descricao: [movimentacao.descricao]
     });
   }
 
@@ -55,6 +56,7 @@ export class MovimentacaoCriarComponent implements OnInit {
     const movimentacao = new Movimentacao();
     movimentacao.valor = formValue.valor;
     movimentacao.funcionario = formValue.funcionario;
+    movimentacao.descricao = formValue.descricao;
     return movimentacao;
   }
 

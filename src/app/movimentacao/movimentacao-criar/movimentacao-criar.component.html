@@ -22,6 +22,11 @@
           </mat-error>
         </mat-form-field>
 
+        <mat-form-field class="example-full-width">
+          <textarea matInput #descricao maxlength="500" placeholder="Descrição" formControlName="descricao"></textarea>
+          <mat-hint align="end">{{descricao.value.length}} / 500</mat-hint>
+        </mat-form-field>
+
         <span>
           <button mat-raised-button type="submit" color="accent" [disabled]="movimentacaoForm.invalid">Salvar</button>
         </span>
